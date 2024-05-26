@@ -1,0 +1,115 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %} <!-- подключение кастомных фильтров-->
+{% load custom_tags %}
+{% load math_filters %}
+
+<!-- Название у нас будет products -->
+{% block title %}
+Products
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим все товары -->
+{% block content %}
+<h1>Все товары</h1>
+
+{% load cache %}
+{% cache 100 number %}
+<div>{{ 2|power:13899 }}</div>
+{% endcache %}
+
+{# Добавляем форму, которая объединяет набор полей, отправляемых в запросе #}
+<form action="" method="get" >
+    {{ filterset.form.non_field_errors }} {# вывод ошибок, не относящихся к полям формы #}
+
+    {{ filterset.form.name__icontains.errors }} {# вывод ошибок, относящихся к полю поиска по названию товара #}
+    <label for="{{ filterset.form.name__icontains.id_for_label }}">Search</label> {# Заголовок #}
+    <input
+        id="{{ filterset.form.name__icontains.id }}"
+        name="{{ filterset.form.name__icontains.name }}"
+        value="{{ filterset.form.name__icontains.value }}"
+        class="form-control"
+    >
+    <input type="submit" class="mt-3 btn-primary" value="Найти" />
+</form>
+
+<!-- Форма с инпутами-->
+<!--<form action="" method="get">-->
+<!--       {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}-->
+<!--       {{ filterset.form.as_p }}-->
+<!--       {# Добавим кнопку отправки данных формы #}-->
+<!--       <input type="submit" value="Найти" />-->
+<!--   </form>-->
+
+<h3>{% current_time '%b %d %Y %A' %}</h3>
+<h3>{{ next_sale|default_if_none:"Чуть позже сообщим о распродаже!" }}</h3>
+<hr>
+
+<!-- Проверка прав доступа-->
+{% if perms.simpleapp.add_product %}
+<a href="{% url 'product_create' %}">Добавить товар</a>
+{% endif %}
+
+
+<!-- Выводим товары в наличии-->
+{% if products %}
+<table>
+    <tr> <!-- Добавляем строку-->
+        <td>Название</td>
+        <td>Описание</td>
+        <td>Категория</td>
+        <td>Цена</td>
+        <td>Количество</td>
+        {# Условие получается составным #}
+        {% if perms.simpleapp.change_product or perms.simpleapp.delete_product %}
+        <td>Действия</td>
+        {% endif %}
+    </tr>
+<!--    Для каждого товара будет генерироваться новая строчка, т.е. новый HTML-код, который указан в теле цикла. -->
+{% for product in products %}
+    <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description|truncatewords:2 }}</td>
+        <td>{{ product.category.name|truncatewords:2 }}</td>
+        <td>{{ product.price|currency:"usd" }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>
+            {# Доступ для каждой ссылки проверяется отдельно #}
+            {% if perms.simpleapp.change_product %}
+            <a href="{% url 'product_update' pk=product.id %}">Изменить</a>
+            {% endif %}
+            {% if perms.simpleapp.delete_product %}
+            <a href="{% url 'product_delete' product.id %}">Удалить</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<!--    {{ products }}-->
+{% else %}
+<!-- Если товара нет, то сообщаем об этом-->
+<h4>Товаров нет!</h4>
+{% endif %}
+
+{# Информация о предыдущих страницах #}
+{% if page_obj.has_previous %} <!-- Если у объекта, в котором содержится информация о текущей странице, существует предыдущая страница-->
+<a href="?{% url_replace page=1 %}">1</a> <!-- Формируем ссылку внизу страницы с адресом ?page=1 -->
+{% if page_obj.previous_page_number != 1 %} <!-- Если у объекта, в котором содержится информация о текущей странице, номер предыдущей страницы не равен 1 -->
+... <!-- Выводим троеточие-->
+<a href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a> <!-- Выводим сслыку снизу страницы с номером предыдущей страницы-->
+{% endif %}
+{% endif %}
+
+{# Информация о текущей странице #}
+{{ page_obj.number }} <!-- Выводим номер текущей страницы-->
+
+{# Информация о следующих страницах #}
+{% if page_obj.has_next %} <!-- Если в объекте, в котором содержится информация о текущей странице, существует следующая страница-->
+<a href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a> <!-- Указываем ссылку снизу страницы с номером следующей страницы-->
+{% if paginator.num_pages != page_obj.next_page_number %} <!-- Если количество страницы не равно номеру следующей страницы-->
+... <!-- Выводим троеточие-->
+<a href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>  <!-- Указываем ссылку снизу страницы на общее количество страниц-->
+{% endif %}
+{% endif %}
+
+{% endblock content %}
