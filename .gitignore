@@ -1,4 +1,4 @@
 /venv/
 /pagination_crib/
-/templates/flatpages/default_backup.html/
-/templates/products_backup.html/
+default_backup.html
+products_backup.html
