@@ -21,7 +21,7 @@ from django.views.decorators.cache import cache_page # кэшируемая ст
 class ProductsList(ListView):
     model = Product # модель, объекты которой предполагается выводить
     ordering = 'name' # поле для сортировки объектов
-    template_name = 'products.html' # шаблон с инструкциями о способах отображения пользователю всех объектов
+    template_name = 'products_bckup.html' # шаблон с инструкциями о способах отображения пользователю всех объектов
     context_object_name = 'products' # список, в котором будут лежать все объекты
     paginate_by = 4 # количество записей на странице
 
@@ -50,7 +50,7 @@ class ProductsList(ListView):
 class ProductDetail(DetailView):
     """Информация об одном товаре"""
     model = Product
-    template_name = 'product.html' # не путать с products.html
+    template_name = 'product.html' # не путать с products_bckup.html
     context_object_name = 'product' # название объекта, в котором будет выбранный пользователем продукт
     queryset = Product.objects.all()
 
