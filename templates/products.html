@@ -10,23 +10,68 @@
 online_store
 {% endblock title %}
 
+{% block header %}
+<header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Интернет-магазин</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">Выгодные предложения</p>
+                </div>
+            </div>
+        </header>
+{% endblock header %}
+
 <!-- В контенте на странице мы выводим все товары -->
 {% block content %}
 <h1>Все товары</h1>
 
-{# Добавляем форму, которая объединяет набор полей, отправляемых в запросе #}
-<form action="" method="get" >
-    {{ filterset.form.non_field_errors }} {# вывод ошибок, не относящихся к полям формы #}
+<section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    {% if products %}
+                        {% for product in products %}
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{ product.name }}</h5>
+                                    <!-- Product price-->
+                                    {{ product.price }}
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="http://127.0.0.1:8000/products/{{ product.id }}">Подробнее</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+     </section>
+{# Информация о предыдущих страницах #}
+{% if page_obj.has_previous %} <!-- Если у объекта, в котором содержится информация о текущей странице, существует предыдущая страница-->
+<a href="?{% url_replace page=1 %}">1</a> <!-- Формируем ссылку внизу страницы с адресом ?page=1 -->
+{% if page_obj.previous_page_number != 1 %} <!-- Если у объекта, в котором содержится информация о текущей странице, номер предыдущей страницы не равен 1 -->
+... <!-- Выводим троеточие-->
+<a href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a> <!-- Выводим сслыку снизу страницы с номером предыдущей страницы-->
+{% endif %}
+{% endif %}
 
-    {{ filterset.form.name__icontains.errors }} {# вывод ошибок, относящихся к полю поиска по названию товара #}
-    <input
-        id="{{ filterset.form.name__icontains.id }}"
-        name="{{ filterset.form.name__icontains.name }}"
-        class="form-control"
-        placeholder="Поиск"
-    >
-    <input type="submit" class="mt-3 btn-primary" value="Найти" />
-</form>
+{# Информация о текущей странице #}
+{{ page_obj.number }} <!-- Выводим номер текущей страницы-->
+
+{# Информация о следующих страницах #}
+{% if page_obj.has_next %} <!-- Если в объекте, в котором содержится информация о текущей странице, существует следующая страница-->
+<a href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a> <!-- Указываем ссылку снизу страницы с номером следующей страницы-->
+{% if paginator.num_pages != page_obj.next_page_number %} <!-- Если количество страницы не равно номеру следующей страницы-->
+... <!-- Выводим троеточие-->
+<a href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>  <!-- Указываем ссылку снизу страницы на общее количество страниц-->
+{% endif %}
+{% endif %}
 
 <!-- Форма с инпутами-->
 <!--<form action="" method="get">-->
@@ -37,13 +82,15 @@ online_store
 <!--   </form>-->
 
 <h3>{{ next_sale|default_if_none:"Чуть позже сообщим о распродаже!" }}</h3>
-<hr>
+<br>
 
+<h2>Дополнительная информация</h2>
+<hr>
+<br>
 <!-- Проверка прав доступа-->
 {% if perms.simpleapp.add_product %}
 <a href="{% url 'product_create' %}">Добавить товар</a>
 {% endif %}
-
 
 <!-- Выводим товары в наличии-->
 {% if products %}
@@ -85,27 +132,6 @@ online_store
 {% else %}
 <!-- Если товара нет, то сообщаем об этом-->
 <h4>Товаров нет!</h4>
-{% endif %}
-
-{# Информация о предыдущих страницах #}
-{% if page_obj.has_previous %} <!-- Если у объекта, в котором содержится информация о текущей странице, существует предыдущая страница-->
-<a href="?{% url_replace page=1 %}">1</a> <!-- Формируем ссылку внизу страницы с адресом ?page=1 -->
-{% if page_obj.previous_page_number != 1 %} <!-- Если у объекта, в котором содержится информация о текущей странице, номер предыдущей страницы не равен 1 -->
-... <!-- Выводим троеточие-->
-<a href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a> <!-- Выводим сслыку снизу страницы с номером предыдущей страницы-->
-{% endif %}
-{% endif %}
-
-{# Информация о текущей странице #}
-{{ page_obj.number }} <!-- Выводим номер текущей страницы-->
-
-{# Информация о следующих страницах #}
-{% if page_obj.has_next %} <!-- Если в объекте, в котором содержится информация о текущей странице, существует следующая страница-->
-<a href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a> <!-- Указываем ссылку снизу страницы с номером следующей страницы-->
-{% if paginator.num_pages != page_obj.next_page_number %} <!-- Если количество страницы не равно номеру следующей страницы-->
-... <!-- Выводим троеточие-->
-<a href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>  <!-- Указываем ссылку снизу страницы на общее количество страниц-->
-{% endif %}
 {% endif %}
 
 {% endblock content %}
