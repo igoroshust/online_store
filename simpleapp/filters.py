@@ -1,3 +1,4 @@
+import django_filters
 from django_filters import FilterSet, ModelChoiceFilter
 from .models import Product, Material
 

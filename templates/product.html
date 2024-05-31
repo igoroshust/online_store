@@ -8,6 +8,11 @@
 
 <!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->
 {% block content %}
-<h1>Информация о конкретном продукте</h1>
-{{ product }}
+<h2>{{ product.name }}</h2>
+<div>Категория: {{ product.category }}<br>
+Описание: {{ product.description }} <br>
+В наличии {{ product.quantity }} шт.<br>
+Цена: {{product.price }} <br>
+</div>
+
 {% endblock content %}

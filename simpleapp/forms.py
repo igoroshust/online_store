@@ -1,9 +1,12 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import Product
+from .models import Product, Category
+
+
+
 
 class ProductForm(forms.ModelForm):
-    description = forms.CharField(min_length=20) # поле для второго способа валидации данных
+    pass
     class Meta:
         model = Product
         fields = [
@@ -12,7 +15,8 @@ class ProductForm(forms.ModelForm):
             'category',
             'price',
             'quantity',
-        ]
+    ]
+
         # fields = '__all__' # all означает, что Джанго сам должен пойти в модель и взять все поля, кроме pk
 
     def clean(self):
