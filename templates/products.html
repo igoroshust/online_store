@@ -40,7 +40,7 @@ online_store
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">{{ product.name }}</h5>
                                     <!-- Product price-->
-                                    {{ product.price }}
+                                    {{ product.price }}₽
                                 </div>
                             </div>
                             <!-- Product actions-->
@@ -113,8 +113,8 @@ online_store
         <td>{{ product.name }}</td>
         <td>{{ product.description|truncatewords:2 }}</td>
         <td>{{ product.category.name|truncatewords:2 }}</td>
-        <td>{{ product.price|currency:"usd" }}</td>
-        <td style="text-align: center;">{{ product.quantity }}</td>
+        <td>{{ product.price }}₽</td>
+        <td style="text-align: center;">{{ product.quantity }} шт.</td>
         <td>
             {# Доступ для каждой ссылки проверяется отдельно #}
             {% if perms.simpleapp.change_product %}
