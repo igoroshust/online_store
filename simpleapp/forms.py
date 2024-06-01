@@ -3,8 +3,6 @@ from django.core.exceptions import ValidationError
 from .models import Product, Category
 
 
-
-
 class ProductForm(forms.ModelForm):
     pass
     class Meta:

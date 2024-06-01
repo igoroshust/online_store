@@ -105,12 +105,24 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '5432',
+    },
 }
+
 
 
 # Password validation
@@ -175,7 +187,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # класс о
 EMAIL_PORT = 465 # порт для приёма писем почтовым сервером
 EMAIL_HOST = 'smtp.yandex.ru' # хост почтового сервера
 EMAIL_HOST_USER = 'online-store.project' # логин пользователя почтового сервиса
-EMAIL_HOST_PASSWORD = 'mvwmewlnvbehvrbm' # пароль пользователя почтового сервиса
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD_ONLINE_STORE') # пароль пользователя почтового сервиса
 EMAIL_USE_TLS = False # необходимость использования TLS
 EMAIL_USE_SSL = True # необходимость использования SSL
 
