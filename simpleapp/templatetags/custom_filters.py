@@ -7,6 +7,23 @@ CURRENCIES_SYMBOLS = {
     'usd': '$',
 }
 
+BAD_WORDS = [
+    'test',
+    'testing',
+]
+
+@register.filter
+def censor(value):
+    """Замена астерисками символов в слове (кроме первого и последнего)"""
+    words = value.split()
+    result = []
+    for word in words:
+        if word in BAD_WORDS:
+            result.append(word[0] + "*" * (len(word) - 2) + word[-1])
+        else:
+            result.append(word)
+    return " ".join(result)
+
 @register.filter
 def currency(value, code='rub'):
     """

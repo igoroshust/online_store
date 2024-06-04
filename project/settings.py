@@ -114,7 +114,7 @@ DATABASES = {
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2', # путь импорта специального модуля Django для работы с конкретным типом БД
 #         'NAME': 'postgres',
 #         'USER': 'postgres',
 #         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),

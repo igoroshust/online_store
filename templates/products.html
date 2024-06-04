@@ -38,7 +38,7 @@ online_store
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">{{ product.name }}</h5>
+                                    <h5 class="fw-bolder">{{ product.name|censor }}</h5>
                                     <!-- Product price-->
                                     {{ product.price }}₽
                                 </div>
@@ -109,10 +109,10 @@ online_store
     </tr>
     <!-- Для каждого товара будет генерироваться новая строчка, т.е. новый HTML-код, который указан в теле цикла. -->
     {% for product in products %}
-    <tr>
-        <td>{{ product.name }}</td>
-        <td>{{ product.description|truncatewords:2 }}</td>
-        <td>{{ product.category.name|truncatewords:2 }}</td>
+    <tr class="{% cycle 'blue' 'white' %}">
+        <td>{{ product.name|censor }}</td>
+        <td>{{ product.description|censor|truncatewords:2 }}</td>
+        <td>{{ product.category.name|truncatewords:2 }}</td> {# default_if_none:'Без категории' #}
         <td>{{ product.price }}₽</td>
         <td style="text-align: center;">{{ product.quantity }} шт.</td>
         <td>

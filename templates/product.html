@@ -8,8 +8,8 @@
 
 <!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->
 {% block content %}
-<h2>{{ product.name }}</h2>
-<div>Категория: {{ product.category }}<br>
+<h2>{{ product.name|censor }}</h2>
+<div>Категория: {{ product.category|censor }}<br>
 Описание: {{ product.description }} <br>
 В наличии {{ product.quantity }} шт.<br>
 Цена: {{product.price }}₽ <br>
