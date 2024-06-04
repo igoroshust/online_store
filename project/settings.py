@@ -57,21 +57,24 @@ INSTALLED_APPS = [
 
 SITE_ID = 1 # site_id используется в случае, если данный проект управляет несколькими сайтами
 
+# Middleware - объекты промежуточных слоёв
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+    'django.middleware.security.SecurityMiddleware', # проверка безопасности (XSS, nosniff, HSTS, CORS, SSL, etc)
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.common.CommonMiddleware', # выполнение стандартных процедур над URL
+    'django.middleware.csrf.CsrfViewMiddleware', # проверка безопасности от угроз типа CSRF
+    'django.contrib.auth.middleware.AuthenticationMiddleware', # основы аутентификации и идентификации
+    # 'django.middleware.cache.UpdateCacheMiddleware', # кэширование на стороне клиента
+    # 'django.middleware.cache.FetchFromCacheMiddleware', # кэширование на стороне клиента
+    'django.contrib.messages.middleware.MessageMiddleware', # поддержка сообщений, лежащих в основе работы с куки и сессиями
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware', # статистические страницы
     'allauth.account.middleware.AccountMiddleware',
+    'django.middleware.custom_simplemiddleware.SimpleMiddleware', # кастомный middleware
 
     # # кэширование всего сайта:
     # 'django.middleware.cache.UpdateCacheMiddleware',
     # 'django.middleware.cache.FetchFromCacheMiddleware',
-    # 'django.middleware.common.CommonMiddleware',
 
 
 ]

@@ -109,7 +109,7 @@ online_store
     </tr>
     <!-- Для каждого товара будет генерироваться новая строчка, т.е. новый HTML-код, который указан в теле цикла. -->
     {% for product in products %}
-    <tr class="{% cycle 'blue' 'white' %}">
+    <tr class="{% cycle 'row-1' 'row-2' %}">
         <td>{{ product.name|censor }}</td>
         <td>{{ product.description|censor|truncatewords:2 }}</td>
         <td>{{ product.category.name|truncatewords:2 }}</td> {# default_if_none:'Без категории' #}
@@ -135,6 +135,7 @@ online_store
 {% endif %}
 
 {% endblock content %}
+
 
 
 
