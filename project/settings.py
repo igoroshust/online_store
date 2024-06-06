@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 
+import logging
+logger = logging.getLogger(__name__)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -72,12 +75,127 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
     'django.middleware.custom_simplemiddleware.SimpleMiddleware', # кастомный middleware
 
-    # # кэширование всего сайта:
-    # 'django.middleware.cache.UpdateCacheMiddleware',
-    # 'django.middleware.cache.FetchFromCacheMiddleware',
-
-
 ]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'debug': {
+            'format': '{levelname} - {message} - {asctime}',
+            'style': '{',
+        },
+        'info': {
+            'format': '{levelname} - {message} - {asctime} - {module} - {pathname}',
+            'style': '{',
+        },
+        'warning': {
+            'format': '{levelname} - {message} - {asctime} - {pathname} ',
+            'style': '{',
+        },
+        'error': {
+            'format': '{levelname} - {message} - {asctime} - {exc_info} - {pathname}',
+            'style': '{',
+        },
+    },
+
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+
+    # обработчики
+    'handlers': {
+        'console_debug': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'filters': ['require_debug_true'],
+            'formatter': 'debug',
+        },
+        'console_info': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'filters': ['require_debug_true'],
+            'formatter': 'info',
+        },
+        'console_warning': {
+            'level': 'WARNING',
+            'class': 'logging.StreamHandler',
+            'filters': ['require_debug_true'],
+            'formatter': 'warning',
+        },
+        'console_error': {
+            'level': 'ERROR',
+            'class': 'logging.StreamHandler',
+            'filters': ['require_debug_true'],
+            'formatter': 'error',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'filters': ['require_debug_false'],
+            'formatter': 'error',
+        },
+        'general_log': {
+            'level': 'DEBUG',
+            'filename': 'logs/general.log',
+            'filters': ['require_debug_false'],
+            'class': 'logging.FileHandler',
+            'formatter': 'debug',
+        },
+        'errors_log': {
+            'level': 'ERROR',
+            'filename': 'logs/errors.log',
+            'filters': ['require_debug_false'],
+            'class': 'logging.FileHandler',
+            'formatter': 'error',
+        },
+        'security_log': {
+            'level': 'INFO',
+            'filename': 'logs/security.log',
+            'filters': ['require_debug_false'],
+            'class': 'logging.FileHandler',
+            'formatter': 'info',
+        },
+    },
+
+    # регистраторы
+    'loggers': {
+        'django': {
+            'handlers': ['console_debug', 'console_info', 'console_warning', 'console_error', 'general_log',],
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['errors_log', 'mail_admins'],
+            'level': 'WARNING',
+            'propagate': False,
+        },
+        'django.server': {
+            'handlers': ['errors_log', 'mail_admins'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+        'django.template': {
+            'handlers': ['errors_log'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'django.db.backends': {
+            'handlers': ['errors_log'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'django.security': {
+            'handlers': ['security_log'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
 
 ROOT_URLCONF = 'project.urls'
 
@@ -217,3 +335,86 @@ CACHES = {
         'TIMEOUT': 30, # время хранения данных в кэше (в секундах)
     }
 }
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'myformatter': {
+#             'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+#             'style': '{',
+#         },
+#     },
+#
+#     'handlers': {
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#             # 'filename': 'logs/general.log',
+#             'formatter': 'myformatter',
+#         },
+#     },
+#
+#
+#     'loggers': {
+#         'simpleapp': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#             'propagate': True, # распространение ошибки выше по уровню пакетов
+#         },
+#     },
+# }
+
+
+
+# LOGGING = {
+#     'version': 1, # первый ключ (единственно доступный)
+#     'disable_existing_loggers': False, # контролирование работы существенной (стандартной) схемы логирования Django
+#     'style': '{',
+#     'formatters': { # форматирование лог-сообщения
+#         'simple': {
+#             'format': '{levelname} {asctime} {message}', # %(levelname)s %(message)s
+#         },
+#     },
+#
+#     # фильтры
+#     'filters': { # фильтрация лог-сообщений (например, обходили определённые сообщения или меняли уровень в зависимости от целей).
+#         'require_debug_true': { # пропускаем записи только в том случае, если DEBUG = True
+#             '()': 'django.utils.log.RequireDebugTrue',
+#         },
+#     },
+#
+#     # обработчики лог-сообщений
+#     'handlers': { # действие с лог сообщением (записывать в файл/консоль/отправлять-по-email)
+#         'console': {
+#             'level': 'DEBUG',
+#             'filters': ['require_debug_true'],
+#             'class': 'logs.StreamHandler',
+#             'formatters': {
+#                 'simple': {
+#                     'format': '{levelname} {asctime} {message}',
+#                 },
+#             },
+#         },
+#         'mail_admins': {
+#             'level': 'ERROR',
+#             'class': 'django.utils.log.AdminEmailHandler'
+#         }
+#     },
+#
+#     # регистраторы
+#     'loggers': { # loggers - именованная корзина, в которую можем писать log-сообщения
+#         'django': { # регистратор django отправляет все сообщения в консоль
+#             'handlers': ['console'],
+#             'propagate': True,
+#         },
+#         'django.request': { # регистратор django.request передаёт все сообщения уровня ERROR в обработчик mail_admins (отправлять по почте)
+#             'handlers': ['mail_admins'], #  передача сообщений уровня DEBUG по почте
+#             'level': 'ERROR',
+#             'propagate': False,
+#             'formatters:': {
+#                 'format': '%(pathname)s %(exc_info)s',
+#             },
+#         }
+#     }
+# }

@@ -1,0 +1,28 @@
+INFO 2024-06-06 20:36:43,125 Watching for file changes with StatReloader
+INFO 2024-06-06 20:37:35,218 Watching for file changes with StatReloader
+INFO 2024-06-06 20:39:34,233 Watching for file changes with StatReloader
+WARNING 2024-06-06 20:39:38,030 "GET /products/28/js/scripts.js HTTP/1.1" 404 4825
+WARNING 2024-06-06 20:39:42,541 "GET /js/scripts.js HTTP/1.1" 404 3585
+WARNING 2024-06-06 20:39:47,448 "GET /js/scripts.js HTTP/1.1" 404 3585
+WARNING 2024-06-06 20:39:51,468 "GET /products/20/js/scripts.js HTTP/1.1" 404 4825
+debug: INFO 2024-06-06 20:42:25,899 Watching for file changes with StatReloader
+debug: WARNING 2024-06-06 20:42:29,505 "GET /js/scripts.js HTTP/1.1" 404 3585
+debug: WARNING 2024-06-06 20:42:42,758 "GET /js/scripts.js HTTP/1.1" 404 3585
+debug: WARNING 2024-06-06 20:42:46,281 "GET /js/scripts.js HTTP/1.1" 404 3585
+debug: WARNING 2024-06-06 20:42:55,557 "GET /products/5/js/scripts.js HTTP/1.1" 404 4822
+debug: WARNING 2024-06-06 20:43:03,061 "GET /js/scripts.js HTTP/1.1" 404 3585
+debug: WARNING 2024-06-06 20:43:08,031 "GET /products/create/js/scripts.js HTTP/1.1" 404 4837
+debug: WARNING 2024-06-06 20:43:23,049 "GET /products/31/js/scripts.js HTTP/1.1" 404 4825
+INFO 2024-06-06 21:07:11,631 Watching for file changes with StatReloader
+WARNING 2024-06-06 21:07:59,955 "GET /js/scripts.js HTTP/1.1" 404 3585
+WARNING 2024-06-06 21:08:08,772 "GET /products/30/update/js/scripts.js HTTP/1.1" 404 4846
+WARNING 2024-06-06 21:08:14,529 "GET /products/30/js/scripts.js HTTP/1.1" 404 4825
+WARNING 2024-06-06 21:08:20,442 "GET /js/scripts.js HTTP/1.1" 404 3585
+WARNING 2024-06-06 21:08:33,556 "GET /js/scripts.js HTTP/1.1" 404 3585
+WARNING 2024-06-06 21:08:36,231 "GET /js/scripts.js HTTP/1.1" 404 3585
+WARNING 2024-06-06 21:08:41,182 "GET /js/scripts.js HTTP/1.1" 404 3585
+WARNING 2024-06-06 21:09:12,044 "GET /products/31/js/scripts.js HTTP/1.1" 404 4825
+WARNING 2024-06-06 21:09:27,840 "GET /js/scripts.js HTTP/1.1" 404 3585
+INFO 2024-06-06 21:15:38,854 Watching for file changes with StatReloader
+INFO 2024-06-06 21:15:48,385 C:\Users\Igor\Projects\online_store\project\settings.py changed, reloading.
+INFO 2024-06-06 21:15:55,426 Watching for file changes with StatReloader

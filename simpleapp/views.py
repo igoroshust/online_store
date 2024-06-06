@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.generic import ListView, DetailView
 from .models import Product, Subscription, Category
 from .forms import ProductForm
@@ -12,11 +12,16 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.contrib.auth.decorators import login_required
 from django.db.models import Exists, OuterRef
 from django.views.decorators.csrf import csrf_protect
-
 from django.core.cache import cache
+
 from django.views.decorators.cache import cache_page # кэшируемая страничка
 
+import logging
+logger = logging.getLogger(__name__)
 
+def index(request):
+    logger.debug('Hello!')
+    return JsonResponse({'success': 'True'})
 
 class ProductsList(ListView):
     model = Product # модель, объекты которой предполагается выводить
