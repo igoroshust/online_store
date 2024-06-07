@@ -1,0 +1,36 @@
+ERROR - Internal Server Error: /index/ - 2024-06-07 12:35:24,480 - (<class 'ValueError'>, ValueError("The view simpleapp.views.index didn't return an HttpResponse object. It returned None instead."), <traceback object at 0x0000025C45D0D480>) - C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\utils\log.py
+Traceback (most recent call last):
+  File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view simpleapp.views.index didn't return an HttpResponse object. It returned None instead.
+ERROR - "GET /index/ HTTP/1.1" 500 75593 - 2024-06-07 12:35:24,483 - None - C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\servers\basehttp.py 
+
+ERROR - Internal Server Error: /index/ - 2024-06-07 12:35:33,785 - (<class 'ValueError'>, ValueError("The view simpleapp.views.index didn't return an HttpResponse object. It returned None instead."), <traceback object at 0x0000025C45C5C700>) - C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\utils\log.py 
+Traceback (most recent call last):
+  File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view simpleapp.views.index didn't return an HttpResponse object. It returned None instead.
+ERROR - "GET /index/ HTTP/1.1" 500 75593 - 2024-06-07 12:35:33,787 - None - C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\servers\basehttp.py 
+
+ERROR - 2024-06-07 12:40:39,652 - Internal Server Error: /index/ - (<class 'ValueError'>, ValueError("The view simpleapp.views.index didn't return an HttpResponse object. It returned None instead."), <traceback object at 0x0000024C01296B00>) - C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\utils\log.py 
+Traceback (most recent call last):
+  File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view simpleapp.views.index didn't return an HttpResponse object. It returned None instead.
+ERROR - 2024-06-07 12:40:39,655 - "GET /index/ HTTP/1.1" 500 75593 - None - C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\servers\basehttp.py 
+

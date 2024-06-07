@@ -20,7 +20,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 def index(request):
-    logger.debug('Hello!')
+    logger.warning('Hi there!')
     return JsonResponse({'success': 'True'})
 
 class ProductsList(ListView):

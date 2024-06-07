@@ -1,28 +1,140 @@
 INFO 2024-06-06 20:36:43,125 Watching for file changes with StatReloader
+
 INFO 2024-06-06 20:37:35,218 Watching for file changes with StatReloader
+
 INFO 2024-06-06 20:39:34,233 Watching for file changes with StatReloader
+
 WARNING 2024-06-06 20:39:38,030 "GET /products/28/js/scripts.js HTTP/1.1" 404 4825
+
 WARNING 2024-06-06 20:39:42,541 "GET /js/scripts.js HTTP/1.1" 404 3585
+
 WARNING 2024-06-06 20:39:47,448 "GET /js/scripts.js HTTP/1.1" 404 3585
+
 WARNING 2024-06-06 20:39:51,468 "GET /products/20/js/scripts.js HTTP/1.1" 404 4825
+
 debug: INFO 2024-06-06 20:42:25,899 Watching for file changes with StatReloader
+
 debug: WARNING 2024-06-06 20:42:29,505 "GET /js/scripts.js HTTP/1.1" 404 3585
+
 debug: WARNING 2024-06-06 20:42:42,758 "GET /js/scripts.js HTTP/1.1" 404 3585
+
 debug: WARNING 2024-06-06 20:42:46,281 "GET /js/scripts.js HTTP/1.1" 404 3585
+
 debug: WARNING 2024-06-06 20:42:55,557 "GET /products/5/js/scripts.js HTTP/1.1" 404 4822
+
 debug: WARNING 2024-06-06 20:43:03,061 "GET /js/scripts.js HTTP/1.1" 404 3585
+
 debug: WARNING 2024-06-06 20:43:08,031 "GET /products/create/js/scripts.js HTTP/1.1" 404 4837
+
 debug: WARNING 2024-06-06 20:43:23,049 "GET /products/31/js/scripts.js HTTP/1.1" 404 4825
+
 INFO 2024-06-06 21:07:11,631 Watching for file changes with StatReloader
+
 WARNING 2024-06-06 21:07:59,955 "GET /js/scripts.js HTTP/1.1" 404 3585
+
 WARNING 2024-06-06 21:08:08,772 "GET /products/30/update/js/scripts.js HTTP/1.1" 404 4846
+
 WARNING 2024-06-06 21:08:14,529 "GET /products/30/js/scripts.js HTTP/1.1" 404 4825
+
 WARNING 2024-06-06 21:08:20,442 "GET /js/scripts.js HTTP/1.1" 404 3585
+
 WARNING 2024-06-06 21:08:33,556 "GET /js/scripts.js HTTP/1.1" 404 3585
+
 WARNING 2024-06-06 21:08:36,231 "GET /js/scripts.js HTTP/1.1" 404 3585
+
 WARNING 2024-06-06 21:08:41,182 "GET /js/scripts.js HTTP/1.1" 404 3585
+
 WARNING 2024-06-06 21:09:12,044 "GET /products/31/js/scripts.js HTTP/1.1" 404 4825
+
 WARNING 2024-06-06 21:09:27,840 "GET /js/scripts.js HTTP/1.1" 404 3585
+
 INFO 2024-06-06 21:15:38,854 Watching for file changes with StatReloader
+
 INFO 2024-06-06 21:15:48,385 C:\Users\Igor\Projects\online_store\project\settings.py changed, reloading.
+
 INFO 2024-06-06 21:15:55,426 Watching for file changes with StatReloader
+
+INFO - 2024-06-07 12:43:44,960 - Watching for file changes with StatReloader 
+
+DEBUG - 2024-06-07 12:43:44,965 - Waiting for apps ready_event. 
+
+DEBUG - 2024-06-07 12:43:45,570 - Apps ready_event triggered. Sending autoreload_started signal. 
+
+DEBUG - 2024-06-07 12:43:45,680 - Watching dir C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\allauth\templates with glob **/*. 
+
+DEBUG - 2024-06-07 12:43:45,681 - Watching dir C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django_filters\templates with glob **/*. 
+
+DEBUG - 2024-06-07 12:43:45,682 - Watching dir C:\Users\Igor\Projects\online_store\templates with glob **/*. 
+
+DEBUG - 2024-06-07 12:43:45,683 - Watching dir C:\Users\Igor\Projects\online_store\locale with glob **/*.mo. 
+
+DEBUG - 2024-06-07 12:43:45,684 - Watching dir C:\Users\Igor\Projects\online_store\simpleapp\locale with glob **/*.mo. 
+
+DEBUG - 2024-06-07 12:43:45,684 - Watching dir C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django_filters\locale with glob **/*.mo. 
+
+DEBUG - 2024-06-07 12:43:45,685 - Watching dir C:\Users\Igor\Projects\online_store\fpages\locale with glob **/*.mo. 
+
+DEBUG - 2024-06-07 12:43:45,713 - Watching dir C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\allauth\locale with glob **/*.mo. 
+
+DEBUG - 2024-06-07 12:43:45,719 - Watching dir C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\allauth\account\locale with glob **/*.mo. 
+
+DEBUG - 2024-06-07 12:43:45,720 - Watching dir C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\allauth\socialaccount\locale with glob **/*.mo.INFO - 2024-06-07 13:21:12,849 - Watching for file changes with StatReloader 
+
+DEBUG - 2024-06-07 13:21:12,852 - Waiting for apps ready_event. 
+
+DEBUG - 2024-06-07 13:21:13,328 - Apps ready_event triggered. Sending autoreload_started signal. 
+
+DEBUG - 2024-06-07 13:21:13,455 - Watching dir C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\allauth\templates with glob **/*. 
+
+DEBUG - 2024-06-07 13:21:13,455 - Watching dir C:\Users\Igor\Projects\online_store\templates with glob **/*. 
+
+DEBUG - 2024-06-07 13:21:13,456 - Watching dir C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django_filters\templates with glob **/*. 
+
+DEBUG - 2024-06-07 13:21:13,456 - Watching dir C:\Users\Igor\Projects\online_store\locale with glob **/*.mo. 
+
+DEBUG - 2024-06-07 13:21:13,456 - Watching dir C:\Users\Igor\Projects\online_store\simpleapp\locale with glob **/*.mo. 
+
+DEBUG - 2024-06-07 13:21:13,456 - Watching dir C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django_filters\locale with glob **/*.mo. 
+
+DEBUG - 2024-06-07 13:21:13,457 - Watching dir C:\Users\Igor\Projects\online_store\fpages\locale with glob **/*.mo. 
+
+DEBUG - 2024-06-07 13:21:13,457 - Watching dir C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\allauth\locale with glob **/*.mo. 
+
+DEBUG - 2024-06-07 13:21:13,457 - Watching dir C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\allauth\account\locale with glob **/*.mo. 
+
+DEBUG - 2024-06-07 13:21:13,457 - Watching dir C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\allauth\socialaccount\locale with glob **/*.mo. 
+
+DEBUG - 2024-06-07 13:21:13,458 - Watching dir C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\allauth\socialaccount\providers\yandex\locale with glob **/*.mo. 
+
+DEBUG - 2024-06-07 13:21:13,458 - Watching dir C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django_apscheduler\locale with glob **/*.mo. 
+
+DEBUG - 2024-06-07 13:21:14,143 - File C:\Users\Igor\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py first seen with mtime 1701955214.0 
+
+DEBUG - 2024-06-07 13:21:14,143 - File C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\contrib\auth\tokens.py first seen with mtime 1716712061.9854312 
+
+DEBUG - 2024-06-07 13:21:14,143 - File C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\allauth\socialaccount\apps.py first seen with mtime 1716712090.4807496 
+
+DEBUG - 2024-06-07 13:21:14,145 - File C:\Users\Igor\AppData\Local\Programs\Python\Python312\DLLs\_ctypes.pyd first seen with mtime 1701955266.0 
+
+DEBUG - 2024-06-07 13:21:14,145 - File C:\Users\Igor\AppData\Local\Programs\Python\Python312\Lib\asyncio\transports.py first seen with mtime 1701955214.0 
+
+DEBUG - 2024-06-07 13:21:14,145 - File C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\db\backends\base\client.py first seen with mtime 1716712067.5474777 
+
+DEBUG - 2024-06-07 13:21:14,145 - File C:\Users\Igor\AppData\Local\Programs\Python\Python312\Lib\http\cookiejar.py first seen with mtime 1701955214.0 
+
+DEBUG - 2024-06-07 13:21:14,146 - File C:\Users\Igor\AppData\Local\Programs\Python\Python312\Lib\zipfile\_path\glob.py first seen with mtime 1701955216.0 
+
+DEBUG - 2024-06-07 13:21:14,146 - File C:\Users\Igor\AppData\Local\Programs\Python\Python312\Lib\asyncio\streams.py first seen with mtime 1701955214.0 
+
+DEBUG - 2024-06-07 13:21:14,146 - File C:\Users\Igor\AppData\Local\Programs\Python\Python312\Lib\gettext.py first seen with mtime 1701955214.0 
+
+DEBUG - 2024-06-07 13:21:14,146 - File C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\files\__init__.py first seen with mtime 1716712067.3769639 
+
+DEBUG - 2024-06-07 13:21:14,147 - File C:\Users\Igor\AppData\Local\Programs\Python\Python312\Lib\quopri.py first seen with mtime 1701955214.0 
+
+DEBUG - 2024-06-07 13:21:14,147 - File C:\Users\Igor\AppData\Local\Programs\Python\Python312\Lib\asyncio\sslproto.py first seen with mtime 1701955214.0 
+
+DEBUG - 2024-06-07 13:21:14,147 - File C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\files\images.py first seen with mtime 1716712067.381318 
+
+DEBUG - 2024-06-07 13:21:14,148 - File C:\Users\Igor\AppData\Local\Programs\Python\Python312\Lib\textwrap.py first seen with mtime 1701955216.0 
+

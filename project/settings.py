@@ -82,19 +82,19 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'debug': {
-            'format': '{levelname} - {message} - {asctime}',
+            'format': '{levelname} - {asctime} - {message} \n',
             'style': '{',
         },
         'info': {
-            'format': '{levelname} - {message} - {asctime} - {module} - {pathname}',
+            'format': '{levelname} - {asctime} - {message} - {module} - {pathname} \n',
             'style': '{',
         },
         'warning': {
-            'format': '{levelname} - {message} - {asctime} - {pathname} ',
+            'format': '{levelname} - {asctime} - {message} - {pathname} \n',
             'style': '{',
         },
         'error': {
-            'format': '{levelname} - {message} - {asctime} - {exc_info} - {pathname}',
+            'format': '{levelname} - {asctime} - {message} - {exc_info} - {pathname} \n',
             'style': '{',
         },
     },
@@ -150,14 +150,12 @@ LOGGING = {
         'errors_log': {
             'level': 'ERROR',
             'filename': 'logs/errors.log',
-            'filters': ['require_debug_false'],
             'class': 'logging.FileHandler',
             'formatter': 'error',
         },
         'security_log': {
             'level': 'INFO',
             'filename': 'logs/security.log',
-            'filters': ['require_debug_false'],
             'class': 'logging.FileHandler',
             'formatter': 'info',
         },
@@ -167,25 +165,26 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console_debug', 'console_info', 'console_warning', 'console_error', 'general_log',],
+            'level': 'DEBUG',
             'propagate': True,
         },
         'django.request': {
-            'handlers': ['errors_log', 'mail_admins'],
+            'handlers': ['errors_log', 'mail_admins',],
             'level': 'WARNING',
             'propagate': False,
         },
         'django.server': {
-            'handlers': ['errors_log', 'mail_admins'],
+            'handlers': ['errors_log', 'mail_admins',],
             'level': 'WARNING',
             'propagate': True,
         },
         'django.template': {
-            'handlers': ['errors_log'],
+            'handlers': ['errors_log',],
             'level': 'ERROR',
             'propagate': False,
         },
         'django.db.backends': {
-            'handlers': ['errors_log'],
+            'handlers': ['errors_log',],
             'level': 'ERROR',
             'propagate': False,
         },
