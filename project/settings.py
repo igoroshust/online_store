@@ -64,6 +64,7 @@ SITE_ID = 1 # site_id используется в случае, есл и дан
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware', # проверка безопасности (XSS, nosniff, HSTS, CORS, SSL, etc)
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware', # выполнение стандартных процедур над URL
     'django.middleware.csrf.CsrfViewMiddleware', # проверка безопасности от угроз типа CSRF
     'django.contrib.auth.middleware.AuthenticationMiddleware', # основы аутентификации и идентификации
@@ -110,12 +111,12 @@ LOGGING = {
 
     # обработчики
     'handlers': {
-        'console_debug': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'filters': ['require_debug_true'],
-            'formatter': 'debug',
-        },
+        # 'console_debug': {
+        #     'level': 'DEBUG',
+        #     'class': 'logging.StreamHandler',
+        #     'filters': ['require_debug_true'],
+        #     'formatter': 'debug',
+        # },
         'console_info': {
             'level': 'INFO',
             'class': 'logging.StreamHandler',
@@ -164,7 +165,13 @@ LOGGING = {
     # регистраторы
     'loggers': {
         'django': {
-            'handlers': ['console_debug', 'console_info', 'console_warning', 'console_error', 'general_log',],
+            'handlers': [
+                # 'console_debug',
+                'console_info',
+                'console_warning',
+                'console_error',
+                'general_log',
+            ],
             'level': 'DEBUG',
             'propagate': True,
         },
@@ -197,6 +204,11 @@ LOGGING = {
 }
 
 ROOT_URLCONF = 'project.urls'
+
+# локализация
+LOCALE_PATH = [
+    os.path.join(BASE_DIR, 'locale')
+]
 
 TEMPLATES = [
     {
@@ -267,11 +279,16 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en' # en-us
+
+LANGUAGES = [
+    ('en', 'English'),
+    ('ru', 'Russian')
+]
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+USE_I18N = True # поддержка интернационализации в приложении
 
 USE_TZ = True
 

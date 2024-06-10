@@ -7,21 +7,19 @@ from .filters import ProductFilter # фильтрация списка това�
 from datetime import datetime
 from pprint import pprint # вывод словаря в красивом виде
 from django.urls import reverse_lazy
-from django.views.generic import (ListView, DetailView, CreateView, UpdateView, DeleteView)
+from django.views.generic import (ListView, DetailView, CreateView, UpdateView, DeleteView, View)
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin # проверка прав доступа
 from django.contrib.auth.decorators import login_required
 from django.db.models import Exists, OuterRef
 from django.views.decorators.csrf import csrf_protect
 from django.core.cache import cache
-
 from django.views.decorators.cache import cache_page # кэшируемая страничка
+from django.utils.translation import gettext as _ # импорт функции для перевода
 
-import logging
-logger = logging.getLogger(__name__)
-
-def index(request):
-    logger.warning('Hi there!')
-    return JsonResponse({'success': 'True'})
+class Index(View):
+    def get(self, request):
+        string = _('Hello, world!')
+        return HttpResponse(string)
 
 class ProductsList(ListView):
     model = Product # модель, объекты которой предполагается выводить
