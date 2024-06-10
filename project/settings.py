@@ -206,7 +206,7 @@ LOGGING = {
 ROOT_URLCONF = 'project.urls'
 
 # локализация
-LOCALE_PATH = [
+LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale')
 ]
 
