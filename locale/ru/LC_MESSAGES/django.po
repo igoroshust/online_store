@@ -62,7 +62,7 @@ msgstr ""
 
 #: .\templates\flatpages\default.html:52
 msgid "set"
-msgstr "найти"
+msgstr "перевести"
 
 #: .\templates\products.html:18
 msgid "Интернет-магазин"
