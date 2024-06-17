@@ -16,9 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: .\fpages\admin.py:11
 msgid "Advanced options"
@@ -26,7 +24,7 @@ msgstr ""
 
 #: .\simpleapp\models.py:48
 msgid "category name"
-msgstr "Имя категории"
+msgstr ""
 
 #: .\simpleapp\models.py:64
 msgctxt "help text for Subscription model"
@@ -58,19 +56,19 @@ msgstr ""
 
 #: .\templates\flatpages\default.html:34
 msgid "Поиск"
-msgstr ""
+msgstr "Search"
 
 #: .\templates\flatpages\default.html:52
 msgid "set"
-msgstr "найти"
+msgstr ""
 
 #: .\templates\products.html:18
 msgid "Интернет-магазин"
-msgstr ""
+msgstr "Online store"
 
 #: .\templates\products.html:19
 msgid "Выгодные предложения"
-msgstr ""
+msgstr "Profitable offer"
 
 #: .\venv\Lib\site-packages\_pytest\config\argparsing.py:475
 #, python-format
@@ -1655,12 +1653,6 @@ msgstr ""
 #, python-format
 msgid "Unable to connect to qpid with SASL mechanism %s"
 msgstr ""
-
-#~ msgid "Check out my new cool translation"
-#~ msgstr "Оцените мой перевод"
-
-#~ msgid "Hello, world!"
-#~ msgstr "Привет, мир!"
 
 #~ msgid "Привет, мир"
 #~ msgstr "Hello, world"

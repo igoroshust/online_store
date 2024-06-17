@@ -1,5 +1,6 @@
 {% extends 'flatpages/default.html' %}
 
+{% load i18n %}
 {% load custom_filters %} <!-- подключение кастомных фильтров-->
 {% load custom_tags %}
 {% load math_filters %}
@@ -14,8 +15,8 @@ online_store
 <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Интернет-магазин</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">Выгодные предложения</p>
+                    <h1 class="display-4 fw-bolder">{% trans 'Интернет-магазин' %}</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">{% trans 'Выгодные предложения' %}</p>
                 </div>
             </div>
         </header>
@@ -51,7 +52,8 @@ online_store
                     </div>
                     {% endfor %}
                     {% endif %}
-     </section>
+</section>
+
 {# Информация о предыдущих страницах #}
 {% if page_obj.has_previous %} <!-- Если у объекта, в котором содержится информация о текущей странице, существует предыдущая страница-->
 <a href="?{% url_replace page=1 %}">1</a> <!-- Формируем ссылку внизу страницы с адресом ?page=1 -->

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.generic import ListView, DetailView
-from .models import Product, Subscription, Category
+from .models import *
 from .forms import ProductForm
 from .filters import ProductFilter # фильтрация списка товаров
 from datetime import datetime
@@ -16,10 +16,18 @@ from django.core.cache import cache
 from django.views.decorators.cache import cache_page # кэшируемая страничка
 from django.utils.translation import gettext as _ # импорт функции для перевода
 
-class Index(View):
-    def get(self, request):
-        string = _('Hello, world!')
-        return HttpResponse(string)
+# class Index(View):
+#     """Статический перевод строки"""
+#     def get(self, request):
+#         string = _('Hello, world!')
+#
+#         # return HttpResponse(string)
+#
+#         context = {
+#             'string': string
+#         }
+#
+#         return HttpResponse(render(request, 'products.html', context))
 
 class ProductsList(ListView):
     model = Product # модель, объекты которой предполагается выводить

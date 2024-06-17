@@ -3,6 +3,8 @@ from django.core.validators import MinValueValidator
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.core.cache import cache
+from django.utils.translation import gettext as _
+from django.utils.translation import pgettext_lazy # импортируем ленивый геттекст с подсказкой
 
 class Material(models.Model):
     """Наименование материала"""
@@ -43,7 +45,7 @@ class ProductMaterial(models.Model):
 
 class Category(models.Model):
     """Категория, к которой будет привязываться товар"""
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100, unique=True, help_text=_('category name'))
 
     def __str__(self):
         return self.name.title()
@@ -59,4 +61,5 @@ class Subscription(models.Model):
         to='Category',
         on_delete=models.CASCADE,
         related_name='subscriptions',
+        verbose_name=pgettext_lazy('help text for Subscription model', 'This is the help text'),
     )
