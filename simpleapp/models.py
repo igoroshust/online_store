@@ -12,6 +12,10 @@ class Material(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Материал'
+        verbose_name_plural = 'Материалы'
 class Product(models.Model):
     """Товар"""
     name = models.CharField(max_length=200, unique=True, verbose_name='Название') # названия товаров не должны повторяться
@@ -38,6 +42,10 @@ class Product(models.Model):
         """Строковое представление"""
         return f'{self.name.title()}: {self.description[:50]}'
 
+    class Meta:
+        verbose_name = 'Продукт'
+        verbose_name_plural = 'Продукты'
+
 class ProductMaterial(models.Model):
     """Промежуточная таблица для связки Продукта и Материала - Состав продукта"""
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -49,6 +57,10 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name.title()
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
 
 class Subscription(models.Model):
     """Список категорий, на которые подписан пользователь"""

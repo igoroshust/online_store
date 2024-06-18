@@ -58,6 +58,15 @@ class ProductsList(ListView):
         # pprint(context) # вывод словаря в красивом виде
         return context  # контекст - это словарь, который мы передаём в тэмлейт (в product и products).
 
+    def get_translate(self, request):
+        models = Product.objects.all()
+
+        context = {
+            'models': models,
+        }
+
+        return HttpResponse(render(request, 'flatpages/default.html', context))
+
 class ProductDetail(DetailView):
     """Информация об одном товаре"""
     model = Product

@@ -1,14 +1,15 @@
 {% extends 'flatpages/default.html' %}
+{% load i18n %}
 
 {% block content %}
-<h1>Товар</h1>
+<h1>{% trans 'Product' %}</h1>
 <hr>
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }} {# форма, отображающаяся на странице #}
     {% comment 'Comment' %}
-    <p>asdsad</p>
+    <p>{% trans 'Info' %}</p>
     {% endcomment %}
-    <input type="submit" value="Сохранить" />
+    <input type="submit" value="{% trans 'Save' %}" />
 </form>
 {% endblock content %}

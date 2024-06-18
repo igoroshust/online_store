@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-17 14:23+0900\n"
+"POT-Creation-Date: 2024-06-18 14:48+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: .\fpages\admin.py:11
 msgid "Advanced options"
-msgstr ""
+msgstr "Расширенные настройки"
 
 #: .\simpleapp\models.py:48
 msgid "category name"
@@ -31,7 +31,15 @@ msgstr "Имя категории"
 #: .\simpleapp\models.py:64
 msgctxt "help text for Subscription model"
 msgid "This is the help text"
-msgstr ""
+msgstr "Это вспомогательный текст"
+
+#: .\templates\403.html:6
+msgid "403 Error"
+msgstr "Ошибка 403"
+
+#: .\templates\403.html:9
+msgid "You do not have access to this page"
+msgstr "У Вас недостаточно прав для доступа к этой странице"
 
 #: .\templates\account\email\base_message.txt:1
 #, python-format
@@ -57,20 +65,110 @@ msgid ""
 msgstr ""
 
 #: .\templates\flatpages\default.html:34
-msgid "Поиск"
-msgstr ""
+msgid "Search"
+msgstr "Поиск"
 
-#: .\templates\flatpages\default.html:52
-msgid "set"
+#: .\templates\flatpages\default.html:53
+msgid "translate"
 msgstr "перевести"
 
+#: .\templates\product.html:14 .\templates\products.html:82
+msgid "Category"
+msgstr "Категория"
+
+#: .\templates\product.html:15 .\templates\products.html:81
+msgid "Description"
+msgstr "Описание"
+
+#: .\templates\product.html:16
+msgid "In stock"
+msgstr "В наличии"
+
+#: .\templates\product.html:16
+msgid "unit"
+msgstr "шт"
+
+#: .\templates\product.html:17 .\templates\products.html:83
+msgid "Price"
+msgstr "Цена"
+
+#: .\templates\product_delete.html:5
+msgid "Delete product"
+msgstr "Удаляем продукт"
+
+#: .\templates\product_delete.html:9 .\templates\product_delete.html:10
+#: .\templates\products.html:105
+#: .\venv\Lib\site-packages\django\forms\formsets.py:499
+msgid "Delete"
+msgstr "Удалить"
+
+#: .\templates\product_edit.html:5
+msgid "Product"
+msgstr "Продукт"
+
+#: .\templates\product_edit.html:11
+msgid "Info"
+msgstr "Инфо"
+
+#: .\templates\product_edit.html:13
+msgid "Save"
+msgstr "Сохранить"
+
 #: .\templates\products.html:18
-msgid "Интернет-магазин"
-msgstr ""
+msgid "Online store"
+msgstr "Интернет-магазин"
 
 #: .\templates\products.html:19
-msgid "Выгодные предложения"
-msgstr ""
+msgid "Profitable offers"
+msgstr "Выгодные предложения"
+
+#: .\templates\products.html:27
+msgid "All products"
+msgstr "Все продукты"
+
+#: .\templates\products.html:49
+msgid "More details"
+msgstr "Подробнее"
+
+#: .\templates\products.html:67
+msgid "Additional information"
+msgstr "Дополнительная информация"
+
+#: .\templates\products.html:72
+msgid "Add product"
+msgstr "Добавить продукт"
+
+#: .\templates\products.html:80
+msgid "Name"
+msgstr "Название"
+
+#: .\templates\products.html:84
+msgid "Quantity"
+msgstr "Количество"
+
+#: .\templates\products.html:87
+msgid "Actions"
+msgstr "Действия"
+
+#: .\templates\products.html:101
+msgid "Edit"
+msgstr "Изменить"
+
+#: .\templates\products.html:114
+msgid "No products!"
+msgstr "Товаров нет!"
+
+#: .\templates\subscriptions.html:5
+msgid "Subscribtions"
+msgstr "Подписчики"
+
+#: .\templates\subscriptions.html:17 .\templates\subscriptions.html:20
+msgid "Subscribe"
+msgstr "Подписаться"
+
+#: .\templates\subscriptions.html:18 .\templates\subscriptions.html:21
+msgid "Unsubscribe"
+msgstr "Отписаться"
 
 #: .\venv\Lib\site-packages\_pytest\config\argparsing.py:475
 #, python-format
@@ -89,7 +187,7 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\click\core.py:1120
 msgid "Aborted!"
-msgstr ""
+msgstr "Прервано!"
 
 #: .\venv\Lib\site-packages\click\core.py:1309
 #: .\venv\Lib\site-packages\click\decorators.py:559
@@ -104,7 +202,7 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\click\core.py:1387
 msgid "Options"
-msgstr ""
+msgstr "Возможности"
 
 #: .\venv\Lib\site-packages\click\core.py:1413
 #, python-brace-format
@@ -937,10 +1035,6 @@ msgstr[1] ""
 msgid "Order"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\forms\formsets.py:499
-msgid "Delete"
-msgstr ""
-
 #: .\venv\Lib\site-packages\django\forms\models.py:899
 #, python-format
 msgid "Please correct the duplicate data for %(field)s."
@@ -1656,11 +1750,6 @@ msgstr ""
 msgid "Unable to connect to qpid with SASL mechanism %s"
 msgstr ""
 
-#~ msgid "Check out my new cool translation"
-#~ msgstr "Оцените мой перевод"
-
-#~ msgid "Hello, world!"
-#~ msgstr "Привет, мир!"
-
-#~ msgid "Привет, мир"
-#~ msgstr "Hello, world"
+#: .\venv\Lib\site-packages\modeltranslation\widgets.py:32
+msgid "None"
+msgstr ""

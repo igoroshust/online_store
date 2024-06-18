@@ -1,5 +1,13 @@
+from modeltranslation.admin import TranslationAdmin # импорт модели админки
 from django.contrib import admin
 from .models import Category, Product, Material
+from .templatetags import *
+
+class CategoryAdmin(TranslationAdmin):
+    model = Category
+
+class ProductsAdmin(TranslationAdmin):
+    model = Product
 
 def nullfy_quantity(modeladmin, request, queryset):
     """Обнуление товара на складе"""

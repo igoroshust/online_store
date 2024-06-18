@@ -1,6 +1,7 @@
 <!--  наследуемся от шаблона default_backup.html, который мы создавали для flatpages -->
 {% extends 'flatpages/default.html' %}
 {% load custom_filters %}
+{% load i18n %}
 
 <!-- Название у нас будет Product -->
 {% block title %}
@@ -10,10 +11,10 @@
 <!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->
 {% block content %}
 <h2>{{ product.name|censor }}</h2>
-<div>Категория: {{ product.category }}<br>
-Описание: {{ product.description|censor }} <br>
-В наличии {{ product.quantity }} шт.<br>
-Цена: {{product.price }}₽ <br>
+<div>{% trans 'Category' %}: {{ product.category }}<br>
+{% trans 'Description' %}: {{ product.description|censor }} <br>
+{% trans 'In stock' %}: {{ product.quantity }} {% trans 'unit' %}.<br>
+{% trans 'Price' %}: {{product.price }}₽ <br><br>
 </div>
 
 {% endblock content %}

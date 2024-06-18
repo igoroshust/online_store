@@ -15,8 +15,8 @@ online_store
 <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">{% trans 'Интернет-магазин' %}</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">{% trans 'Выгодные предложения' %}</p>
+                    <h1 class="display-4 fw-bolder">{% trans 'Online store' %}</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">{% trans 'Profitable offers' %}</p>
                 </div>
             </div>
         </header>
@@ -24,7 +24,7 @@ online_store
 
 <!-- В контенте на странице мы выводим все товары -->
 {% block content %}
-<h1>Все товары</h1>
+<h1>{% trans 'All products' %}</h1>
 
 <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
@@ -46,15 +46,77 @@ online_store
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="http://127.0.0.1:8000/products/{{ product.id }}">Подробнее</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="http://127.0.0.1:8000/products/{{ product.id }}">{% trans 'More details' %}</a></div>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
                     {% endif %}
-</section>
+    </section>
+
+<!-- Форма с инпутами-->
+<!--<form action="" method="get">-->
+<!--       {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}-->
+<!--       {{ filterset.form.as_p }}-->
+<!--       {# Добавим кнопку отправки данных формы #}-->
+<!--       <input type="submit" value="Найти" />-->
+<!--   </form>-->
+
+<h3>{{ next_sale|default_if_none:"{% trans 'We will inform you about the sale later!' %}" }}</h3>
+
+<h2>{% trans 'Additional information' %}</h2>
+<hr>
+<br>
+<!-- Проверка прав доступа-->
+{% if perms.simpleapp.add_product %}
+<a href="{% url 'product_create' %}">{% trans 'Add product' %}</a>
+{% endif %}
+
+<!-- Выводим товары в наличии-->
+{% if products %}
+
+<table cellpadding="5">
+    <tr> <!-- Добавляем строку-->
+        <td>{% trans 'Name' %}</td>
+        <td>{% trans 'Description' %}</td>
+        <td>{% trans 'Category' %}</td>
+        <td>{% trans 'Price' %}</td>
+        <td>{% trans 'Quantity' %}</td>
+        {# Условие получается составным #}
+        {% if perms.simpleapp.change_product or perms.simpleapp.delete_product %}
+        <td>{% trans 'Actions' %}</td>
+        {% endif %}
+    </tr>
+    <!-- Для каждого товара будет генерироваться новая строчка, т.е. новый HTML-код, который указан в теле цикла. -->
+    {% for product in products %}
+    <tr class="{% cycle 'row-1' 'row-2' %}">
+        <td>{{ product.name|censor }}</td>
+        <td>{{ product.description|censor|truncatewords:2 }}</td>
+        <td>{{ product.category.name|truncatewords:2 }}</td> {# default_if_none:'Без категории' #}
+        <td>{{ product.price }}₽</td>
+        <td style="text-align: center;">{{ product.quantity }} шт.</td>
+        <td>
+            {# Доступ для каждой ссылки проверяется отдельно #}
+            {% if perms.simpleapp.change_product %}
+            <a href="{% url 'product_update' pk=product.id %}">{% trans 'Edit' %}</a>
+            <span>|</span>
+            {% endif %}
+            {% if perms.simpleapp.delete_product %}
+            <a href="{% url 'product_delete' product.id %}">{% trans 'Delete' %}</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<!--    {{ products }}-->
+{% else %}
+<!-- Если товара нет, то сообщаем об этом-->
+<h4>{% trans 'No products!' %}</h4>
+{% endif %}
+<br>
 
 {# Информация о предыдущих страницах #}
+<div style="text-align: center;">
 {% if page_obj.has_previous %} <!-- Если у объекта, в котором содержится информация о текущей странице, существует предыдущая страница-->
 <a href="?{% url_replace page=1 %}">1</a> <!-- Формируем ссылку внизу страницы с адресом ?page=1 -->
 {% if page_obj.previous_page_number != 1 %} <!-- Если у объекта, в котором содержится информация о текущей странице, номер предыдущей страницы не равен 1 -->
@@ -74,67 +136,7 @@ online_store
 <a href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>  <!-- Указываем ссылку снизу страницы на общее количество страниц-->
 {% endif %}
 {% endif %}
-
-<!-- Форма с инпутами-->
-<!--<form action="" method="get">-->
-<!--       {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}-->
-<!--       {{ filterset.form.as_p }}-->
-<!--       {# Добавим кнопку отправки данных формы #}-->
-<!--       <input type="submit" value="Найти" />-->
-<!--   </form>-->
-
-<h3>{{ next_sale|default_if_none:"Чуть позже сообщим о распродаже!" }}</h3>
-<br>
-
-<h2>Дополнительная информация</h2>
-<hr>
-<br>
-<!-- Проверка прав доступа-->
-{% if perms.simpleapp.add_product %}
-<a href="{% url 'product_create' %}">Добавить товар</a>
-{% endif %}
-
-<!-- Выводим товары в наличии-->
-{% if products %}
-
-<table cellpadding="5">
-    <tr> <!-- Добавляем строку-->
-        <td>Название</td>
-        <td>Описание</td>
-        <td>Категория</td>
-        <td>Цена</td>
-        <td>Количество</td>
-        {# Условие получается составным #}
-        {% if perms.simpleapp.change_product or perms.simpleapp.delete_product %}
-        <td>Действия</td>
-        {% endif %}
-    </tr>
-    <!-- Для каждого товара будет генерироваться новая строчка, т.е. новый HTML-код, который указан в теле цикла. -->
-    {% for product in products %}
-    <tr class="{% cycle 'row-1' 'row-2' %}">
-        <td>{{ product.name|censor }}</td>
-        <td>{{ product.description|censor|truncatewords:2 }}</td>
-        <td>{{ product.category.name|truncatewords:2 }}</td> {# default_if_none:'Без категории' #}
-        <td>{{ product.price }}₽</td>
-        <td style="text-align: center;">{{ product.quantity }} шт.</td>
-        <td>
-            {# Доступ для каждой ссылки проверяется отдельно #}
-            {% if perms.simpleapp.change_product %}
-            <a href="{% url 'product_update' pk=product.id %}">Изменить</a>
-            <span>|</span>
-            {% endif %}
-            {% if perms.simpleapp.delete_product %}
-            <a href="{% url 'product_delete' product.id %}">Удалить</a>
-            {% endif %}
-        </td>
-    </tr>
-    {% endfor %}
-</table>
-<!--    {{ products }}-->
-{% else %}
-<!-- Если товара нет, то сообщаем об этом-->
-<h4>Товаров нет!</h4>
-{% endif %}
+</div>
 
 {% endblock content %}
 
