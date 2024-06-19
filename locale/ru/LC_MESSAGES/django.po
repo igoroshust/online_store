@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-18 14:48+0900\n"
+"POT-Creation-Date: 2024-06-19 13:21+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,11 +24,36 @@ msgstr ""
 msgid "Advanced options"
 msgstr "Расширенные настройки"
 
-#: .\simpleapp\models.py:48
+#: .\simpleapp\forms.py:19 .\simpleapp\models.py:21
+#: .\templates\products.html:80
+msgid "Name"
+msgstr "Название"
+
+#: .\simpleapp\forms.py:20 .\simpleapp\models.py:22 .\templates\product.html:15
+#: .\templates\products.html:81
+msgid "Description"
+msgstr "Описание"
+
+#: .\simpleapp\forms.py:21 .\simpleapp\models.py:24 .\templates\product.html:14
+#: .\templates\products.html:82
+msgid "Category"
+msgstr "Категория"
+
+#: .\simpleapp\forms.py:22 .\simpleapp\models.py:26 .\templates\product.html:17
+#: .\templates\products.html:83
+msgid "Price"
+msgstr "Цена"
+
+#: .\simpleapp\forms.py:23 .\simpleapp\models.py:23
+#: .\templates\products.html:84
+msgid "Quantity"
+msgstr "Количество"
+
+#: .\simpleapp\models.py:56
 msgid "category name"
 msgstr "Имя категории"
 
-#: .\simpleapp\models.py:64
+#: .\simpleapp\models.py:76
 msgctxt "help text for Subscription model"
 msgid "This is the help text"
 msgstr "Это вспомогательный текст"
@@ -72,14 +97,6 @@ msgstr "Поиск"
 msgid "translate"
 msgstr "перевести"
 
-#: .\templates\product.html:14 .\templates\products.html:82
-msgid "Category"
-msgstr "Категория"
-
-#: .\templates\product.html:15 .\templates\products.html:81
-msgid "Description"
-msgstr "Описание"
-
 #: .\templates\product.html:16
 msgid "In stock"
 msgstr "В наличии"
@@ -87,10 +104,6 @@ msgstr "В наличии"
 #: .\templates\product.html:16
 msgid "unit"
 msgstr "шт"
-
-#: .\templates\product.html:17 .\templates\products.html:83
-msgid "Price"
-msgstr "Цена"
 
 #: .\templates\product_delete.html:5
 msgid "Delete product"
@@ -137,14 +150,6 @@ msgstr "Дополнительная информация"
 #: .\templates\products.html:72
 msgid "Add product"
 msgstr "Добавить продукт"
-
-#: .\templates\products.html:80
-msgid "Name"
-msgstr "Название"
-
-#: .\templates\products.html:84
-msgid "Quantity"
-msgstr "Количество"
 
 #: .\templates\products.html:87
 msgid "Actions"
@@ -827,7 +832,7 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2437
 msgid "Text"
-msgstr ""
+msgstr "Текст"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2512
 #, python-format

@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from .models import Product, Category
-
+from django.utils.translation import gettext_lazy as _
 
 class ProductForm(forms.ModelForm):
     pass
@@ -13,7 +13,16 @@ class ProductForm(forms.ModelForm):
             'category',
             'price',
             'quantity',
-    ]
+        ]
+
+        labels = {
+            'name': _('Name'),
+            'description': _('Description'),
+            'category': _('Category'),
+            'price': _('Price'),
+            'quantity': _('Quantity'),
+        }
+
 
         # fields = '__all__' # all означает, что Джанго сам должен пойти в модель и взять все поля, кроме pk
 

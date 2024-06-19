@@ -18,12 +18,12 @@ class Material(models.Model):
         verbose_name_plural = 'Материалы'
 class Product(models.Model):
     """Товар"""
-    name = models.CharField(max_length=200, unique=True, verbose_name='Название') # названия товаров не должны повторяться
-    description = models.CharField(max_length=200, verbose_name='Описание')
-    quantity = models.IntegerField(validators=[MinValueValidator(0, 'Quantity should be >= 0.0')], verbose_name='Количество')
-    category = models.ForeignKey(to='Category', on_delete=models.CASCADE, related_name='products', verbose_name='Категория') # все продукты в категории будут доступны через поле products, поле категории будет ссылаться на модель категории
+    name = models.CharField(max_length=200, unique=True, verbose_name=_('Name')) # названия товаров не должны повторяться
+    description = models.CharField(max_length=200, verbose_name=_('Description'))
+    quantity = models.IntegerField(validators=[MinValueValidator(0, 'Quantity should be >= 0.0')], verbose_name=_('Quantity'))
+    category = models.ForeignKey(to='Category', on_delete=models.CASCADE, related_name='products', verbose_name=_('Category')) # все продукты в категории будут доступны через поле products, поле категории будет ссылаться на модель категории
     # materials = models.ForeignKey(to='Material', on_delete=models.CASCADE)
-    price = models.FloatField(validators=[MinValueValidator(0.0, 'Price should be >= 0.0')], verbose_name='Цена')
+    price = models.FloatField(validators=[MinValueValidator(0.0, 'Price should be >= 0.0')], verbose_name=_('Price'))
 
     @property
     def on_stock(self):
