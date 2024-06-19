@@ -1,6 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.views.generic import ListView, DetailView
 from .models import *
 from .forms import ProductForm
 from .filters import ProductFilter # фильтрация списка товаров
@@ -15,19 +14,9 @@ from django.views.decorators.csrf import csrf_protect
 from django.core.cache import cache
 from django.views.decorators.cache import cache_page # кэшируемая страничка
 from django.utils.translation import gettext as _ # импорт функции для перевода
-
-# class Index(View):
-#     """Статический перевод строки"""
-#     def get(self, request):
-#         string = _('Hello, world!')
-#
-#         # return HttpResponse(string)
-#
-#         context = {
-#             'string': string
-#         }
-#
-#         return HttpResponse(render(request, 'products.html', context))
+from django.utils.translation import activate, get_supported_language_variant
+from django.utils import timezone
+import pytz # стандартный модуль для работы с часовыми поясами
 
 class ProductsList(ListView):
     model = Product # модель, объекты которой предполагается выводить
@@ -56,16 +45,27 @@ class ProductsList(ListView):
         # context['time_now'] = datetime.utcnow() # к словарю добавляем текущую дату в ключ 'time_now'
         # context['next_sale'] = 'Распродажа в среду!' # пустая переменная для рассмотрения работы ещё одного фильтра.
         # pprint(context) # вывод словаря в красивом виде
+        context['current_time'] = timezone.localtime(timezone.now())
+        context['timezones'] = pytz.common_timezones
         return context  # контекст - это словарь, который мы передаём в тэмлейт (в product и products).
 
     def get_translate(self, request):
+        """Локализация (язык и часовой пояс)"""
         models = Product.objects.all()
 
         context = {
             'models': models,
+            # 'current_time': timezone.localtime(timezone.now()),
+            # 'timezones': pytz.common_timezones # добавляем в контекст все доступные часовые пояса
         }
 
         return HttpResponse(render(request, 'flatpages/default.html', context))
+
+    def post(self, request):
+        """Добавляем в сессию часовой пояс по пост-запросу, обработанным middleware"""
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/')
+
 
 class ProductDetail(DetailView):
     """Информация об одном товаре"""

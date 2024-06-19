@@ -76,6 +76,7 @@ MIDDLEWARE = [
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware', # статистические страницы
     'allauth.account.middleware.AccountMiddleware',
     'django.middleware.custom_simplemiddleware.SimpleMiddleware', # кастомный middleware
+    'django.middleware.middlewares.TimezoneMiddleware',
 
 ]
 
