@@ -38,6 +38,22 @@ paths:
           description: ''
       tags:
         - schools
+  /schools/{id}:
+    delete:
+      operationId: destroySchool
+      description: 'Delete school'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this school
+          schema:
+            type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+        - schools
 
 components:
   schemas:
