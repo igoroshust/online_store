@@ -1,5 +1,6 @@
 from django.urls import path, include
-from .views import (ProductsList, ProductDetail, ProductCreate, ProductUpdate, ProductDelete, subscriptions,) # импортируем созданное нами представление
+from .views import (ProductsList, ProductDetail, ProductCreate, ProductUpdate, ProductDelete, subscriptions) # импортируем созданное нами представление
+from django.views.generic import TemplateView
 from django.views.decorators.cache import cache_page
 
 urlpatterns = [
@@ -11,6 +12,10 @@ urlpatterns = [
     path('<int:pk>/update/', ProductUpdate.as_view(), name='product_update'),
     path('<int:pk>/delete/', ProductDelete.as_view(), name='product_delete'),
     path('subscriptions/', subscriptions, name='subscriptions'),
+    path('swagger-ui/', TemplateView.as_view(
+        template_name='swagger-ui.html',
+        extra_context={'schema_url': 'openapi-schema'}),
+         name='swagger-ui'),
     # path('index/', Index.as_view()), # тест локализации
 ]
 
