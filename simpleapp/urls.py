@@ -1,7 +1,12 @@
 from django.urls import path, include
-from .views import (ProductsList, ProductDetail, ProductCreate, ProductUpdate, ProductDelete, subscriptions) # импортируем созданное нами представление
+from .views import (ProductViewset, CategoryViewset, ProductsList, ProductDetail, ProductCreate, ProductUpdate, ProductDelete, subscriptions) # импортируем созданное нами представление
 from django.views.generic import TemplateView
 from django.views.decorators.cache import cache_page
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'products', ProductViewset)
+router.register(r'categories', CategoryViewset)
 
 urlpatterns = [
     # path('', cache_page(100)(ProductsList.as_view()), name='product_list'),
@@ -16,6 +21,7 @@ urlpatterns = [
         template_name='swagger-ui.html',
         extra_context={'schema_url': 'openapi-schema'}),
          name='swagger-ui'),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
     # path('index/', Index.as_view()), # тест локализации
 ]
 

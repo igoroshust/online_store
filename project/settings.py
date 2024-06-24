@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.yandex',
     'django_apscheduler',
+    'rest_framework',
 ]
 
 SITE_ID = 1 # site_id используется в случае, есл и данный проект управляет несколькими сайтами
@@ -344,6 +345,17 @@ MANAGERS = (
 #     ('Igor', 'igoroshust75@gmail.com'),
 #     ('Egor', 'boxforstudies@gmail.com'),
 # )
+
+# Пагинация для REST-Framework
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 5,
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
+
 
 # ======== КЭШИРОВАНИЕ ========
 CACHES = {

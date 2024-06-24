@@ -1044,3 +1044,49 @@ Traceback (most recent call last):
 django.template.exceptions.TemplateDoesNotExist: swagger-ui.html
 ERROR - 2024-06-21 13:38:56,041 - "GET /swagger-ui/ HTTP/1.1" 500 85518 - None - C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\servers\basehttp.py 
 
+ERROR - 2024-06-24 14:44:31,723 - Internal Server Error: /products/ - (<class 'django.utils.datastructures.MultiValueDictKeyError'>, MultiValueDictKeyError('timezone'), <traceback object at 0x000001CF88272540>) - C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\utils\log.py 
+Traceback (most recent call last):
+  File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\utils\datastructures.py", line 84, in __getitem__
+    list_ = super().__getitem__(key)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'timezone'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Igor\Projects\online_store\simpleapp\views.py", line 92, in post
+    request.session['django_timezone'] = request.POST['timezone']
+                                         ~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\utils\datastructures.py", line 86, in __getitem__
+    raise MultiValueDictKeyError(key)
+django.utils.datastructures.MultiValueDictKeyError: 'timezone'
+ERROR - 2024-06-24 14:44:31,734 - "POST /products/ HTTP/1.1" 500 20760 - None - C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\servers\basehttp.py 
+
+ERROR - 2024-06-24 14:45:47,503 - Internal Server Error: /products/2 - (<class 'RuntimeError'>, RuntimeError("You called this URL via PUT, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining PUT data. Change your form to point to 127.0.0.1:8000/products/2/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings."), <traceback object at 0x000001CF8820F680>) - C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\utils\log.py 
+Traceback (most recent call last):
+  File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\utils\deprecation.py", line 136, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via PUT, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining PUT data. Change your form to point to 127.0.0.1:8000/products/2/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR - 2024-06-24 14:45:47,506 - "PUT /products/2 HTTP/1.1" 500 76240 - None - C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\core\servers\basehttp.py 
+

@@ -1,12 +1,12 @@
 openapi: 3.0.2
 info:
-  title: 'Online store'
+  title: 'Some application'
   version: "0.1"
 paths:
-  /products/:
+  /schools/:
     get:
-      operationId: ProductsList
-      description: 'List of products'
+      operationId: listSchools
+      description: 'List of schools'
       parameters: []
       responses:
         '200':
@@ -15,66 +15,49 @@ paths:
             schema:
               type: array
               items:
-                  $ref: '#/components/schemas/Product'
+                  $ref: '#/components/schemas/School'
           description: ''
       tags:
-        - products
+        - schools
 
     post:
-      operationId: ProductCreate
-      description: 'Create product'
+      operationId: createSchool
+      description: 'Create school'
       parameters: []
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Product'
+              $ref: '#/components/schemas/School'
       responses:
         '201':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Product'
+                $ref: '#/components/schemas/School'
           description: ''
       tags:
-        - products
-
-  /products/{id}:
+        - schools
+  /schools/{id}:
     delete:
-      operationId: ProductDelete
-      description: 'Delete product'
+      operationId: destroySchool
+      description: 'Delete school'
       parameters:
         - name: id
           in: path
           required: true
-          description: A unique integer value identifying this products
+          description: A unique integer value identifying this school
           schema:
             type: string
       responses:
         '204':
           description: ''
       tags:
-        - products
-
-    put:
-      operationId: ProductUpdate
-      description: 'Update product'
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: A unique integer value identifying this products
-          schema:
-            type: string
-      responses:
-        '204':
-          description: ''
-      tags:
-        - products
+        - schools
 
 components:
   schemas:
-    Product:
+    School:
       type: object
       properties:
         id:

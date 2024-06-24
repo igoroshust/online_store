@@ -16,6 +16,7 @@ class Material(models.Model):
     class Meta:
         verbose_name = 'Материал'
         verbose_name_plural = 'Материалы'
+
 class Product(models.Model):
     """Товар"""
     name = models.CharField(max_length=200, unique=True, verbose_name=_('Name')) # названия товаров не должны повторяться
@@ -24,6 +25,7 @@ class Product(models.Model):
     category = models.ForeignKey(to='Category', on_delete=models.CASCADE, related_name='products', verbose_name=_('Category')) # все продукты в категории будут доступны через поле products, поле категории будет ссылаться на модель категории
     # materials = models.ForeignKey(to='Material', on_delete=models.CASCADE)
     price = models.FloatField(validators=[MinValueValidator(0.0, 'Price should be >= 0.0')], verbose_name=_('Price'))
+    is_activate = models.BooleanField(default=True)
 
     @property
     def on_stock(self):

@@ -13,3 +13,7 @@ Traceback (most recent call last):
   File "C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\http\request.py", line 151, in get_host
     raise DisallowedHost(msg)
 django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING - 2024-06-24 14:06:18,484 - Forbidden (CSRF token from the 'X-Csrftoken' HTTP header incorrect.): /products/8/ - log - C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\utils\log.py 
+
+WARNING - 2024-06-24 14:06:20,999 - Forbidden (CSRF token from the 'X-Csrftoken' HTTP header incorrect.): /products/8/ - log - C:\Users\Igor\Projects\online_store\venv\Lib\site-packages\django\utils\log.py 
+

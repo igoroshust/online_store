@@ -1,3 +1,4 @@
+import django_filters.rest_framework
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from .models import *
@@ -17,6 +18,31 @@ from django.utils.translation import gettext as _ # импорт функции 
 from django.utils.translation import activate, get_supported_language_variant
 from django.utils import timezone
 import pytz # стандартный модуль для работы с часовыми поясами
+
+from rest_framework import viewsets, permissions, status
+from rest_framework.response import Response
+from simpleapp.serializers import *
+
+class ProductViewset(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+    # def list(self, request, format=None):
+    #     return Response([])
+
+    def destroy(self, request, pk, format=None):
+        instance = self.get_object()
+        instance.is_active = False
+        instance.save()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class CategoryViewset(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    # permission_classes = [permissions.IsAuthenticated]
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend] # фильтр-бэкенд
+    filterset_fields = ["name"] # по каким полям нужно фильтровать
+
 
 class ProductsList(ListView):
     model = Product # модель, объекты которой предполагается выводить
