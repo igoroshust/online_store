@@ -30,11 +30,21 @@ class ProductViewset(viewsets.ModelViewSet):
     # def list(self, request, format=None):
     #     return Response([])
 
-    def destroy(self, request, pk, format=None):
-        instance = self.get_object()
-        instance.is_active = False
-        instance.save()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    # def destroy(self, request, pk, format=None):
+    #     instance = self.get_object()
+    #     instance.is_active = False
+    #     instance.save()
+    #     return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def get_queryset(self):
+        queryset = Product.objects.all()
+        product_id = self.request.query_params.get('product_id', None)
+        category_id = self.request.query_params.get('category_id', None)
+        if product_id is not None:
+            queryset = queryset.filter(category__product_id=product_id)
+        if category_id is not None:
+            queryset = queryset.filter(category_id=category_id)
+        return queryset
 
 class CategoryViewset(viewsets.ModelViewSet):
     queryset = Category.objects.all()
