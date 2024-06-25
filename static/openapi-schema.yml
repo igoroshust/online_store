@@ -58,16 +58,31 @@ paths:
 
     put:
       operationId: ProductUpdate
-      description: 'Update product'
+      description: 'Product update'
       parameters:
         - name: id
           in: path
           required: true
-          description: A unique integer value identifying this products
+          description: A unique integer value identifying this product.
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Product'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Product'
       responses:
-        '204':
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
           description: ''
       tags:
         - products

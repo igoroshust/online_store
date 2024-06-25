@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 
+
 import logging
 logger = logging.getLogger(__name__)
 
@@ -62,7 +63,7 @@ INSTALLED_APPS = [
 
 SITE_ID = 1 # site_id используется в случае, есл и данный проект управляет несколькими сайтами
 
-# Middleware - объекты промежуточных слоёв
+# ----------------------------------------------- Middleware -----------------------------------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware', # проверка безопасности (XSS, nosniff, HSTS, CORS, SSL, etc)
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -80,6 +81,8 @@ MIDDLEWARE = [
     'django.middleware.middlewares.TimezoneMiddleware',
 
 ]
+
+# ----------------------------------------------- Логирование -----------------------------------------------
 
 LOGGING = {
     'version': 1,
@@ -206,11 +209,20 @@ LOGGING = {
     },
 }
 
+
 ROOT_URLCONF = 'project.urls'
 
-# локализация
+# ----------------------------------------------- Локализация -----------------------------------------------
+
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale')
+]
+
+LANGUAGE_CODE = 'en-us' # en-us
+
+LANGUAGES = [
+    ('en-us', 'English'),
+    ('ru', 'Russian'),
 ]
 
 TEMPLATES = [
@@ -228,6 +240,8 @@ TEMPLATES = [
         },
     },
 ]
+
+# ----------------------------------------------- Аутентификация -----------------------------------------------
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend', # аутентификация по username
@@ -282,12 +296,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us' # en-us
-
-LANGUAGES = [
-    ('en-us', 'English'),
-    ('ru', 'Russian'),
-]
 
 TIME_ZONE = 'UTC'
 
@@ -310,6 +318,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/products'
 
+# ----------------------------------------------- Регистрация  -----------------------------------------------
+
 # форма для дополнительной обработки регистрации пользователя \
 # (чтобы allauth распознал форму как ту, что должна выполняться вместо формы по умолчанию.)
 ACCOUNT_FORMS = {"signup": "accounts.forms.CustomSignupForm"}
@@ -322,7 +332,8 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory' # верификация почты
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True # активация аккаунта сразу после перехода по ссылке
 # ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 4 # храним количество дней, когда доступна ссылка на подтверждение регистрации.
 
-# настройки почты
+# ----------------------------------------------- Настройка почты -----------------------------------------------
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # класс отправителя сообщений
 EMAIL_PORT = 465 # порт для приёма писем почтовым сервером
 EMAIL_HOST = 'smtp.yandex.ru' # хост почтового сервера
@@ -330,9 +341,7 @@ EMAIL_HOST_USER = 'online-store.project' # логин пользователя �
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD_ONLINE_STORE') # пароль пользователя почтового сервиса
 EMAIL_USE_TLS = False # необходимость использования TLS
 EMAIL_USE_SSL = True # необходимость использования SSL
-
 DEFAULT_FROM_EMAIL = 'online-store.project@yandex.ru' # почтовый адрес отправителя по умолчанию
-
 EMAIL_SUBJECT_PREFIX = 'Ура! ' # текст в начале письма с сообщением
 SERVER_EMAIL = 'online-store.project@yandex.ru' # адрес почты, от имени которой будет отправляться письмо при вызове mail_admins и mail_manager.
 MANAGERS = (
@@ -346,7 +355,7 @@ MANAGERS = (
 #     ('Egor', 'boxforstudies@gmail.com'),
 # )
 
-# Пагинация для REST-Framework
+# ----------------------------------------------- DRF: пагинация -----------------------------------------------
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
@@ -357,7 +366,7 @@ REST_FRAMEWORK = {
 }
 
 
-# ======== КЭШИРОВАНИЕ ========
+# ----------------------------------------------- Кеширование -----------------------------------------------
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache', # класс, подключающий кэширование к Django. Здесь писана логика работы cache

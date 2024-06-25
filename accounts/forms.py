@@ -64,4 +64,5 @@ class CustomSignupForm(SignupForm):
 
         # common_users = Group.objects.get(name="common users") # получаем объект модели группы с названием common users
         # user.groups.add(common_users) # добавляем нового пользователя в эту группу
+
         return user # обязательным требованием метода save() является возвращение объекта модели User по итогу выполнения функции
