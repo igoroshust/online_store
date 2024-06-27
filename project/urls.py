@@ -16,9 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from simpleapp.views import *
 
-from simpleapp.urls import router
-from simpleapp.views import multiply
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'products', ProductViewset)
+router.register(r'categories', CategoryViewset)
+
 
 urlpatterns = [
     path('accounts/', include('allauth.urls')),
