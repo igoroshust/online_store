@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.yandex',
     'django_apscheduler',
     'rest_framework',
+    'drf_spectacular',
 ]
 
 SITE_ID = 1 # site_id используется в случае, есл и данный проект управляет несколькими сайтами
@@ -356,21 +357,34 @@ MANAGERS = (
 # )
 
 # ----------------------------------------------- DRF: пагинация/ доступ к API -----------------------------------------------
+# REST_FRAMEWORK = {
+#     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+#     'PAGE_SIZE': 5,
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticated',
+#     ]
+# }
+
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 5,
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ]
+    # YOUR SETTINGS
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Your Project API',
+    'DESCRIPTION': 'Your project description',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
 }
 
 
 # ----------------------------------------------- Кеширование -----------------------------------------------
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache', # класс, подключающий кэширование к Django. Здесь писана логика работы cache
-        'LOCATION': os.path.join(BASE_DIR, 'cache_files'), # соединяем базовую директорию с файлом 'cache_files'
-        'TIMEOUT': 30, # время хранения данных в кэше (в секундах)
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache', # класс, подключающий кэширование к Django. Здесь писана логика работы cache
+#         'LOCATION': os.path.join(BASE_DIR, 'cache_files'), # соединяем базовую директорию с файлом 'cache_files'
+#         'TIMEOUT': 30, # время хранения данных в кэше (в секундах)
+#     }
+# }

@@ -17,25 +17,34 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from simpleapp.views import *
-
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from rest_framework import routers
 
-router = routers.DefaultRouter()
-router.register(r'products', ProductViewset)
-router.register(r'categories', CategoryViewset)
+# router = routers.DefaultRouter()
+# router.register(r'products', ProductViewset)
+# router.register(r'categories', CategoryViewset)
+
 
 
 urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
     path('', include('simpleapp.urls')),
-    path('products/', include('simpleapp.urls')),
-    path('api/', include(router.urls)),
+    path('i18n/', include('django.conf.urls.i18n')),
+    # path('products/', include('simpleapp.urls')),
+    # path('api/', include(router.urls)),
+    # YOUR PATTERNS
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    # Optional UI:
+    path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+]
 
     # path('multiply/', multiply),
     # path('pages/', include('django.contrib.flatpages.urls')),
     # path('', include('simpleapp.urls')),
     # path('accounts/', include('django.contrib.auth.urls')),
     # path('accounts/', include("accounts.urls")),
-]
+
+# ]

@@ -23,6 +23,15 @@ from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
 from simpleapp.serializers import *
 
+from django.contrib.auth.models import User
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+
 class ProductViewset(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
