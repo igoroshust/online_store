@@ -30,6 +30,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
     path('', include('simpleapp.urls')),
+    path('products/', include('simpleapp.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
     # path('products/', include('simpleapp.urls')),
     # path('api/', include(router.urls)),
